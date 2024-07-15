@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Project1.Engine
 {
@@ -21,6 +22,10 @@ namespace Project1.Engine
         }
         #endregion
         #region Public Methods
+        public Texture2D LoadSprite(string spriteFileName)
+        {
+            return contentManager.Load<Texture2D>(spriteFileName);
+        }
         #endregion
         #region Private Methods
         #endregion
