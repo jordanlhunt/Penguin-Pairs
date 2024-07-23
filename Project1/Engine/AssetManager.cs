@@ -2,10 +2,8 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
-
 namespace Project1.Engine
 {
-
     internal class AssetManager
     {
         #region Member Variables
@@ -46,7 +44,6 @@ namespace Project1.Engine
         /// Loads and plays the sound effect with the provided name
         /// </summary>
         /// <param name="soundEffectFileName">The name of the SoundEffect to play</param>
->
         public void PlaySoundEffect(string soundEffectFileName)
         {
             SoundEffect soundEffect = contentManager.Load<SoundEffect>(soundEffectFileName);
