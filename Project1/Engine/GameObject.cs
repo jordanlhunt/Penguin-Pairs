@@ -86,6 +86,10 @@ namespace Project1.Engine
         {
             velocity = Vector2.Zero;
         }
+        public virtual void Update(GameTime gameTime)
+        {
+            LocalPosition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
         #endregion
         #region Private Methods
         #endregion
