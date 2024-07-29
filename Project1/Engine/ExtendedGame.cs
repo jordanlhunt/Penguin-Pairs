@@ -133,7 +133,7 @@ namespace Project1.Engine
         /// Scales the window to the desired size, and calulates how the game world should be scale to fit inside the window
         /// </summary>
         /// <param name="isFullScreen">A bool to check if the window should be fullscreen or not</param>
-        void ApplyResolutionSettings(bool isFullScreen)
+        void ApplyScreenResolutionSettings(bool isFullScreen)
         {
             // Apply the passed in fullscreen settings
             graphics.IsFullScreen = isFullScreen;
