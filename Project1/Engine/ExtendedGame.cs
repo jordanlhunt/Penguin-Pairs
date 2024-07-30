@@ -101,7 +101,7 @@ namespace Project1.Engine
             GameStateManager.Update(gameTime);
         }
         /// <summary>
-        /// Peforms basic input handling and then calls GameStateManager.HandleInput() for the game world
+        /// Performs basic input handling and then calls GameStateManager.HandleInput() for the game world
         /// </summary>
         protected void HandleInput()
         {
@@ -130,7 +130,7 @@ namespace Project1.Engine
             spriteBatch.End();
         }
         /// <summary>
-        /// Scales the window to the desired size, and calulates how the game world should be scale to fit inside the window
+        /// Scales the window to the desired size, and calculates how the game world should be scale to fit inside the window
         /// </summary>
         /// <param name="isFullScreen">A bool to check if the window should be fullscreen or not</param>
         void ApplyScreenResolutionSettings(bool isFullScreen)
@@ -160,7 +160,7 @@ namespace Project1.Engine
         /// Calculates and returns the viewport to use, the game world fits on the screen while preserving its aspect ration
         /// </summary>
         /// <param name="windowSize">The size of the screen on which the game world will be drawn</param>
-        /// <returns>A viewport object that will show the game world as larges as possible while perserving the aspect ratio</returns>
+        /// <returns>A viewport object that will show the game world as larges as possible while preserving the aspect ratio</returns>
         Viewport CalculateViewport(Point windowSize)
         {
             // Create a viewport to be returned
