@@ -18,9 +18,8 @@ namespace Project1
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
+            Window.Title = "Pair Game";
         }
 
         protected override void LoadContent()

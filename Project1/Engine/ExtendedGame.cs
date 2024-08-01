@@ -107,12 +107,12 @@ namespace Project1.Engine
         {
             inputHelper.Update();
             // Quit the game if player presses ESC
-            if (inputHelper.KeyPressed(Keys.Escape))
+            if (inputHelper.IsKeyPressed(Keys.Escape))
             {
                 Exit();
             }
             // Toggle full-screen mode if the player presses F5
-            if (inputHelper.KeysPressed(Keys.F5))
+            if (inputHelper.IsKeyPressed(Keys.F5))
             {
                 IsFullScreen = !IsFullScreen;
             }
