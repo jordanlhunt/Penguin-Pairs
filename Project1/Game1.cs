@@ -19,7 +19,7 @@ namespace Project1
         protected override void Initialize()
         {
             base.Initialize();
-            Window.Title = "Pair Game";
+            Window.Title = "Penguin Pairs";
         }
 
         protected override void LoadContent()
