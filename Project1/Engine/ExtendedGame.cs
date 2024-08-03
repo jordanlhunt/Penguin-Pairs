@@ -90,6 +90,7 @@ namespace Project1.Engine
             GameStateManager = new GameStateManager();
             // Set Fullscreen to false by default
             IsFullScreen = false;
+            Window.Title = "Penguin Pairs";
         }
         /// <summary>
         /// Updates all the objects in the game world. HandlesInput from player and then updates
