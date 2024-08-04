@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Project1.Engine
 {
@@ -62,6 +63,10 @@ namespace Project1.Engine
             if (gameStatesDictionary.ContainsKey(gameStateName))
             {
                 currentGameState = gameStatesDictionary[gameStateName];
+            }
+            else
+            {
+                Debug.WriteLine("[GameStateManager.cs] - SwitchGameState() - gameStateName not found");
             }
         }
         /// <summary>

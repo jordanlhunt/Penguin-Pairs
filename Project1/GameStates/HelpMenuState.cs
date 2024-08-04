@@ -2,14 +2,14 @@
 
 namespace Project1.GameStates
 {
-    internal class HelpState : GameState
+    internal class HelpMenuState : GameState
     {
         #region Member Variables
         #endregion
         #region Properties
         #endregion
         #region Constructor
-        public HelpState()
+        public HelpMenuState()
         {
             SpriteGameObject helpStateSprite = new SpriteGameObject("Sprites/spr_background_help");
             // gameObjectsList is a protected variable, so subclasses of GameState can access it. 

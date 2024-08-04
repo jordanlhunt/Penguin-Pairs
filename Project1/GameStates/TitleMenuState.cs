@@ -1,5 +1,6 @@
 ﻿using Project1.Engine;
-
+using System.Diagnostics;
+using Keys = Microsoft.Xna.Framework.Input.Keys;
 namespace Project1.GameStates
 {
     internal class TitleMenuState : GameState
@@ -17,6 +18,15 @@ namespace Project1.GameStates
         }
         #endregion
         #region Public Methods
+        public override void HandleInput(InputHelper inputHelper)
+        {
+            base.HandleInput(inputHelper);
+            if (inputHelper.IsKeyPressed(Keys.H))
+            {
+                ExtendedGame.GameStateManager.SwitchGameState(PenguinPairs.STATENAME_HELP);
+                Debug.WriteLine("[TitleMenuState.cs] - HandleInput() - Switch to Help Screen");
+            }
+        }
         #endregion
         #region Private Methods
         #endregion

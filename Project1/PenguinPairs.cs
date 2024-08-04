@@ -32,9 +32,20 @@ namespace Project1
             worldSize = new Point(1200, 900);
             windowSize = new Point(1024, 768);
             IsFullScreen = false;
-            // Configure the GameStates
-            GameStateManager.AddGameState(STATENAME_TITLE, new TitleMenuState());
+            // Add The Game State
+            AddGameStates(GameStateManager);
             GameStateManager.SwitchGameState(STATENAME_TITLE);
         }
+
+        #region Private Helper
+        private void AddGameStates(GameStateManager gameStateManager)
+        {
+            gameStateManager.AddGameState(STATENAME_TITLE, new TitleMenuState());
+            gameStateManager.AddGameState(STATENAME_HELP, new HelpMenuState());
+            gameStateManager.AddGameState(STATENAME_OPTIONS, new OptionsMenuState());
+            gameStateManager.AddGameState(STATENAME_LEVELSELECT, new LevelMenuState());
+            gameStateManager.AddGameState(STATENAME_PLAYING, new PlayingState());
+        }
+        #endregion
     }
 }
