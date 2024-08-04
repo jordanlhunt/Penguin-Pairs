@@ -1,4 +1,5 @@
-﻿using Project1.Engine;
+﻿using Microsoft.Xna.Framework.Input;
+using Project1.Engine;
 
 namespace Project1.GameStates
 {
@@ -17,6 +18,14 @@ namespace Project1.GameStates
         }
         #endregion
         #region Public Methods
+        public override void HandleInput(InputHelper inputHelper)
+        {
+            base.HandleInput(inputHelper);
+            if (inputHelper.IsKeyPressed(Keys.Back))
+            {
+                ExtendedGame.GameStateManager.SwitchGameState(PenguinPairs.STATENAME_LEVELSELECT);
+            }
+        }
         #endregion
         #region Private Methods
         #endregion

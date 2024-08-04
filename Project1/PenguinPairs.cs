@@ -32,8 +32,9 @@ namespace Project1
             worldSize = new Point(1200, 900);
             windowSize = new Point(1024, 768);
             IsFullScreen = false;
-            // Add The Game State
+            // Add The Game States
             AddGameStates(GameStateManager);
+            // Have the title screen be the default
             GameStateManager.SwitchGameState(STATENAME_TITLE);
         }
 
