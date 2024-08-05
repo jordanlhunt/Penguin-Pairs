@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 namespace Project1.Engine
 {
-    internal class ExtendedGame : Game
+    internal abstract class ExtendedGame : Game
     {
         #region Member Variables
         // Standard Monogame objects for graphics and sprites

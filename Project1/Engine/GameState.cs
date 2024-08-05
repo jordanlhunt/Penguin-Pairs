@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Project1.Engine
 {
-    internal class GameState
+    internal abstract class GameState : IGameLoopObject
     {
         #region Member Variables
         protected GameObjectList gameObjectsList;

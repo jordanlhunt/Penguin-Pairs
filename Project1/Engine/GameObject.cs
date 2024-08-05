@@ -5,7 +5,7 @@ namespace Project1.Engine
     /// <summary>
     /// A class for objects in the game world with a position and velocity
     /// </summary>
-    internal class GameObject
+    internal abstract class GameObject : IGameLoopObject
     {
         #region Member Variables
         /// <summary>
