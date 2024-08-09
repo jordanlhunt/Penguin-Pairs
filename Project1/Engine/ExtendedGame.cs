@@ -70,7 +70,7 @@ namespace Project1.Engine
             Content.RootDirectory = "Content";
             graphics = new GraphicsDeviceManager(this);
             // Create the inputHelper and RandomNumberGenerator
-            inputHelper = new InputHelper();
+            inputHelper = new InputHelper(this);
             RandomNumberGenerator = new Random();
             // Set default for window and world size
             windowSize = new Point(DEFAULT_WINDOW_SIZE_X, DEFAULT_WINDOW_SIZE_Y);

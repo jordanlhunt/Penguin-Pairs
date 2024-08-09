@@ -10,7 +10,7 @@ namespace Project1.Engine
         /// <summary>
         /// The sprite that this object can draw on the screen
         /// </summary>
-        protected Texture2D sprite;
+        protected SpriteSheet sprite;
         /// <summary>
         /// The origin ('offset') to use when drawing the sprite to the screen.
         /// </summary>
@@ -48,6 +48,30 @@ namespace Project1.Engine
                 return spriteBounds;
             }
         }
+        public int SheetIndex
+        {
+            get
+            {
+                return sprite.SheetIndex;
+            }
+            set
+            {
+                sprite.SheetIndex = value;
+            }
+        }
+
+        public Vector2 Origin
+        {
+            get
+            {
+                return origin;
+            }
+            set
+            {
+                origin = value;
+            }
+        }
+
 
         #endregion
         #region Constructors
@@ -57,7 +81,7 @@ namespace Project1.Engine
         /// <param name="spriteName">The string of sprite to load</param>
         public SpriteGameObject(string spriteName)
         {
-            sprite = ExtendedGame.AssetManager.LoadSprite(spriteName);
+            sprite = new SpriteSheet(spriteName);
             origin = Vector2.Zero;
         }
         #endregion
@@ -72,7 +96,7 @@ namespace Project1.Engine
             if (IsVisible == true)
             {
                 // Draw the sprite at its GLOBAL position in the game world
-                spriteBatch.Draw(sprite, GlobalPosition, null, Color.White, 0, origin, 1.0f, SpriteEffects.None, 0);
+                sprite.Draw(spriteBatch, GlobalPosition, origin);
             }
             base.Draw(gameTime, spriteBatch);
         }
