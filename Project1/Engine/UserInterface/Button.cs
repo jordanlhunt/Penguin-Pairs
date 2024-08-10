@@ -21,7 +21,7 @@
         #region Public Methods
         public override void HandleInput(InputHelper inputHelper)
         {
-            IsPressed = IsVisible && inputHelper.IsMouseLeftButtonPressed() && BoundingBox.Contains(inputHelper.MousePositionScreen);
+            IsPressed = IsVisible && inputHelper.IsMouseLeftButtonPressed() && BoundingBox.Contains(inputHelper.MousePositionWorld);
         }
         public override void Reset()
         {

@@ -62,7 +62,7 @@ namespace Project1.Engine.UserInterface
         {
             get
             {
-                previousValue = currentValue;
+                return previousValue == currentValue;
             }
         }
         #endregion
