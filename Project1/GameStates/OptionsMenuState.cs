@@ -1,6 +1,5 @@
 ﻿using Project1.Engine;
 using Project1.Engine.UserInterface;
-using Keys = Microsoft.Xna.Framework.Input.Keys;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace Project1.GameStates
@@ -27,10 +26,6 @@ namespace Project1.GameStates
         public override void HandleInput(InputHelper inputHelper)
         {
             base.HandleInput(inputHelper);
-            if (inputHelper.IsKeyPressed(Keys.Back))
-            {
-                ExtendedGame.GameStateManager.SwitchGameState(PenguinPairs.STATENAME_TITLE);
-            }
             if (backButton.IsPressed)
             {
                 ExtendedGame.GameStateManager.SwitchGameState(PenguinPairs.STATENAME_TITLE);
