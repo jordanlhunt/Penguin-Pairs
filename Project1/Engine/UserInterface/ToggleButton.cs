@@ -15,7 +15,7 @@
             set
             {
                 isSelected = value;
-                if (isSelected == true)
+                if (isSelected)
                 {
                     SheetIndex = 1;
                 }
@@ -36,7 +36,7 @@
         public override void HandleInput(InputHelper inputHelper)
         {
             base.HandleInput(inputHelper);
-            if (isSelected == true)
+            if (IsPressed)
             {
                 IsSelected = !IsSelected;
             }

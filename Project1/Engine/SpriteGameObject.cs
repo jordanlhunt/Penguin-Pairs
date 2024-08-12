@@ -62,14 +62,8 @@ namespace Project1.Engine
 
         public Vector2 Origin
         {
-            get
-            {
-                return origin;
-            }
-            set
-            {
-                origin = value;
-            }
+            get;
+            set;
         }
 
 

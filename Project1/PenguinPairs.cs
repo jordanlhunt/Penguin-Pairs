@@ -14,6 +14,13 @@ namespace Project1
         public const string STATENAME_LEVELSELECT = "levelselect";
         public const string STATENAME_PLAYING = "playing";
         #endregion
+        #region Properties
+        public static bool HintsEnabled
+        {
+            get;
+            set;
+        }
+        #endregion
         [STAThread]
         static void Main()
         {

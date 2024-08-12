@@ -80,7 +80,7 @@ namespace Project1.Engine
         /// <param name="spriteBatch">A sprite batch object used for drawing sprites</param>
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (IsVisible)
+            if (!IsVisible)
             {
                 return;
             }
@@ -89,6 +89,7 @@ namespace Project1.Engine
             // Draw the text   
             spriteBatch.DrawString(font, TextString, GlobalPosition, fontColor, 0f, orign, 1, SpriteEffects.None, 0);
         }
+
         #endregion
         #region Private Methods
         #endregion

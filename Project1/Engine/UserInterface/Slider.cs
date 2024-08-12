@@ -29,7 +29,7 @@ namespace Project1.Engine.UserInterface
             }
         }
 
-        float CurrentValue
+        public float CurrentValue
         {
             get
             {
@@ -62,12 +62,12 @@ namespace Project1.Engine.UserInterface
         {
             get
             {
-                return previousValue == currentValue;
+                return previousValue != currentValue;
             }
         }
         #endregion
         #region Constructor
-        public Slider(string foregroundSprite, string backgroundSprite, float maximumValue, float minimumValue)
+        public Slider(string foregroundSprite, string backgroundSprite, float maximumValue, float minimumValue, int padding)
         {
             backgroundBar = new SpriteGameObject(backgroundSprite);
             AddChild(backgroundBar);
@@ -78,8 +78,9 @@ namespace Project1.Engine.UserInterface
 
             this.minimumValue = minimumValue;
             this.maximumValue = maximumValue;
+            backgroundPadding = padding;
             previousValue = this.minimumValue;
-            currentValue = previousValue;
+            CurrentValue = previousValue;
 
         }
         #endregion
@@ -91,7 +92,7 @@ namespace Project1.Engine.UserInterface
                 return;
             }
             Vector2 currentMousePosition = inputHelper.MousePositionWorld;
-            previousValue = currentValue;
+            previousValue = CurrentValue;
             if (inputHelper.IsMouseLeftButtonDown() && foregroundBar.BoundingBox.Contains(currentMousePosition))
             {
                 float mouseXInRange = currentMousePosition.X - GlobalPosition.X - MinimumLocalX;
