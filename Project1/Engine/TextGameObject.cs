@@ -20,7 +20,7 @@ namespace Project1.Engine
         /// <summary>
         /// The text string that this object should draw on the screen
         /// </summary>
-        public string TextString
+        public string Text
         {
             get; set;
         }
@@ -46,13 +46,13 @@ namespace Project1.Engine
                 // Right aligned
                 if (fontAlignment == Alignment.Right)
                 {
-                    return font.MeasureString(TextString).X;
+                    return font.MeasureString(Text).X;
 
                 }
                 else
                 {
                     // Center aligned
-                    return font.MeasureString(TextString).X / 2.0f;
+                    return font.MeasureString(Text).X / 2.0f;
                 }
             }
         }
@@ -69,7 +69,7 @@ namespace Project1.Engine
             font = ExtendedGame.AssetManager.LoadFont(fontName);
             fontColor = color;
             fontAlignment = alignment;
-            TextString = "DefaultTextABC123";
+            Text = "DefaultTextABC123";
         }
         #endregion
         #region Public Methods
@@ -87,7 +87,7 @@ namespace Project1.Engine
             // Calculate the origin
             Vector2 orign = new Vector2(OriginX, 0);
             // Draw the text   
-            spriteBatch.DrawString(font, TextString, GlobalPosition, fontColor, 0f, orign, 1, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font, Text, GlobalPosition, fontColor, 0f, orign, 1, SpriteEffects.None, 0);
         }
 
         #endregion

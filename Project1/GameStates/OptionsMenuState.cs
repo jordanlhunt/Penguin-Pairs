@@ -59,11 +59,11 @@ namespace Project1.GameStates
         private void SetupTextGameObjects()
         {
             hintsText = new TextGameObject("Fonts/MenuFont", Color.DarkBlue);
-            hintsText.TextString = "Hints";
+            hintsText.Text = "Hints";
             hintsText.LocalPosition = new Vector2(150, 340);
             gameObjectsList.AddChild(hintsText);
             musicVolumeText = new TextGameObject("Fonts/MenuFont", Color.DarkBlue);
-            musicVolumeText.TextString = "Music Volume";
+            musicVolumeText.Text = "Music Volume";
             musicVolumeText.LocalPosition = new Vector2(150, 480);
             gameObjectsList.AddChild(musicVolumeText);
         }
