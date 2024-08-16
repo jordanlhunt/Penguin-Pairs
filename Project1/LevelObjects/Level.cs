@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Project1.Engine;
 using System.IO;
+
 namespace Project1.LevelObjects
 {
     internal class Level : GameObjectList
@@ -43,17 +44,54 @@ namespace Project1.LevelObjects
             string levelDescription = streamReader.ReadLine();
             targetNumberOfPairs = int.Parse(streamReader.ReadLine());
             CreateLevelInfoObject(levelTitle, levelDescription);
+            string[] hint = streamReader.ReadLine().Split(' ');
+            int hintX = int.Parse(hint[0]);
+            int hintY = int.Parse(hint[1]);
+            int hintDirection = StringToDirection(hint[2]);
+            hintArrow = new SpriteGameObject("spr_arrow_hint@4", hintDirection);
+            hintArrow.LocalPosition = GetCellPosition(hintX, hintY);
         }
         void CreateLevelInfoObject(string levelTitle, string levelDescription)
         {
-            SpriteGameObject spriteGameObject = new SpriteGameObject("Sprites/spr_level_info");
+            SpriteGameObject levelInfoBackground = new SpriteGameObject("Sprites/spr_level_info");
+            levelInfoBackground.SetOriginToCenter();
+            levelInfoBackground.LocalPosition = new Vector2(600, 820);
             TextGameObject textGameObjectInfo = new TextGameObject("Fonts/HelpFont", Color.DarkMagenta);
             TextGameObject textGameObjectDescription = new TextGameObject("Fonts/HelpFont", Color.DarkMagenta);
             textGameObjectInfo.Text = levelTitle;
             textGameObjectDescription.Text = levelDescription;
-
-
+            textGameObjectInfo.LocalPosition = new Vector2(600, 800);
+            textGameObjectDescription.LocalPosition = new Vector2(600, 786);
+            AddChild(levelInfoBackground);
+            AddChild(textGameObjectDescription);
+            AddChild(textGameObjectInfo);
+        }
+        int StringToDirection(string direction)
+        {
+            if (direction == "right")
+            {
+                return (int)ArrowDirection.Right;
+            }
+            else if (direction == "up")
+            {
+                return (int)ArrowDirection.Up;
+            }
+            else if (direction == "left")
+            {
+                return (int)ArrowDirection.Left;
+            }
+            else
+            {
+                return (int)ArrowDirection.Down;
+            }
         }
         #endregion
     }
+}
+enum ArrowDirection
+{
+    Right,
+    Up,
+    Left,
+    Down
 }
