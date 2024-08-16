@@ -73,7 +73,7 @@ namespace Project1.Engine
         /// Creates a new SpriteGameObject with a given sprite Name 
         /// </summary>
         /// <param name="spriteName">The string of sprite to load</param>
-        public SpriteGameObject(string spriteName)
+        public SpriteGameObject(string spriteName, int spriteIndex = 0)
         {
             sprite = new SpriteSheet(spriteName);
             origin = Vector2.Zero;
