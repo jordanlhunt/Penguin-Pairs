@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Project1.Engine;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Project1.LevelObjects
@@ -50,6 +51,20 @@ namespace Project1.LevelObjects
             int hintDirection = StringToDirection(hint[2]);
             hintArrow = new SpriteGameObject("spr_arrow_hint@4", hintDirection);
             hintArrow.LocalPosition = GetCellPosition(hintX, hintY);
+            List<string> gridRows = new List<string>();
+            string gridLine = streamReader.ReadLine();
+            int gridWidth = gridLine.Length;
+            while (gridLine != null)
+            {
+                gridRows.Add(gridLine);
+                gridLine = streamReader.ReadLine();
+                if (gridLine.Length > gridWidth)
+                {
+                    gridWidth = gridLine.Length;
+                }
+            }
+            streamReader.Close();
+            AddPlayingField(gridRows, gridWidth, gridRows.Count);
         }
         void CreateLevelInfoObject(string levelTitle, string levelDescription)
         {
@@ -84,6 +99,55 @@ namespace Project1.LevelObjects
             {
                 return (int)ArrowDirection.Down;
             }
+        }
+        /// <summary>
+        /// This method will convert text of a level file to a grid filled with instances of the Tile and Animal classes
+        /// </summary>
+        /// <param name="gridRows"></param>
+        /// <param name="gridWidth"></param>
+        /// <param name="gridHeight"></param>
+        void AddPlayingField(List<string> gridRows, int gridWidth, int gridHeight)
+        {
+            GameObjectList playingFieldList = new GameObjectList();
+            Vector2 gridSize = new Vector2(gridWidth * TileWidth, gridHeight * TileHeight);
+            playingFieldList.LocalPosition = new Vector2(600, 420) - gridSize / 2.0f;
+            tiles = new Tile[gridWidth, gridHeight];
+            animalsOnTiles = new Animal[gridWidth, gridHeight];
+            for (int y = 0; y < gridHeight; y++)
+            {
+                string row = gridRows[y];
+                for (int x = 0; x < gridWidth; x++)
+                {
+                    char symbol = ' ';
+                    if (x < row.Length)
+                    {
+                        symbol = row[x];
+                    }
+                    AddTile(x, y, symbol);
+                    AddAnimal(x, y, symbol);
+                }
+
+            }
+            for (int y = 0; y < gridHeight; y++)
+            {
+                for (int x = 0; x < gridWidth; x++)
+                {
+                    playingFieldList.AddChild(tiles[x, y]);
+                }
+            }
+            for (int y = 0; y < gridHeight; y++)
+            {
+                for (int x = 0; x < gridWidth; x++)
+                {
+                    if (animalsOnTiles[x, y] != null)
+                    {
+                        playingFieldList.AddChild(animalsOnTiles[x, y]);
+                    }
+                }
+            }
+            hintArrow.IsVisible = false;
+            playingFieldList.AddChild(hintArrow);
+            AddChild(playingFieldList);
         }
         #endregion
     }
