@@ -10,6 +10,7 @@ namespace Project1.LevelObjects
         #region Constants
         const int TileWidth = 73;
         const int TileHeight = 72;
+        const string MoveableAnimalLetters = "brgycpmx";
         #endregion
         #region Member Variables
         int targetNumberOfPairs;
@@ -148,6 +149,69 @@ namespace Project1.LevelObjects
             hintArrow.IsVisible = false;
             playingFieldList.AddChild(hintArrow);
             AddChild(playingFieldList);
+        }
+
+        private void AddAnimal(int x, int y, char symbol)
+        {
+            Animal newAnimal = null;
+            // TODO: check if symbol represents an animal
+            if (symbol == '@')
+            {
+                newAnimal = new Shark();
+            }
+            if (newAnimal == null)
+            {
+                int animalIndex = MoveableAnimalLetters.IndexOf(symbol);
+                if (animalIndex >= 0)
+                {
+                    newAnimal = new MoveableAnimal(animalIndex, false);
+                }
+            }
+            if (newAnimal == null)
+            {
+                int animalIndex = MoveableAnimalLetters.ToUpper().IndexOf(symbol);
+                if (animalIndex >= 0)
+                {
+                    newAnimal = new MoveableAnimal(animalIndex, true);
+                }
+            }
+
+            if (newAnimal != null)
+            {
+                newAnimal.LocalPosition = GetCellPosition(x, y);
+                animalsOnTiles[x, y] = newAnimal;
+            }
+        }
+
+        private void AddTile(int x, int y, char symbol)
+        {
+            Tile tile = new Tile(CharToTileType(symbol), x, y);
+            tile.LocalPosition = GetCellPosition(x, y);
+            tiles[x, y] = tile;
+        }
+        private Tile.Type CharToTileType(char symbol)
+        {
+            if (symbol == ' ')
+            {
+                return Tile.Type.Empty;
+            }
+            else if (symbol == '.')
+            {
+                return Tile.Type.Normal;
+            }
+            else if (symbol == '#')
+            {
+                return Tile.Type.Wall;
+            }
+            else if (symbol == '_')
+            {
+                return Tile.Type.Hole;
+            }
+            else if (MoveableAnimalLetters.ToUpper().Contains(symbol))
+            {
+                return Tile.Type.Hole;
+            }
+            return Tile.Type.Normal;
         }
         #endregion
     }
