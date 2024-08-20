@@ -1,5 +1,7 @@
-﻿using Project1.Engine;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Project1.Engine;
 using Project1.Engine.UserInterface;
+using Project1.LevelObjects;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace Project1.GameStates
@@ -10,6 +12,7 @@ namespace Project1.GameStates
         Button hintButton;
         Button retryButton;
         Button quitButton;
+        Level level;
         #endregion
         #region Properties
         #endregion
@@ -47,6 +50,33 @@ namespace Project1.GameStates
             {
                 ExtendedGame.GameStateManager.SwitchGameState(PenguinPairs.STATENAME_LEVELSELECT);
             }
+            if (level != null)
+            {
+                level.HandleInput(inputHelper);
+            }
+        }
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        {
+            base.Update(gameTime);
+            if (level != null)
+            {
+                level.Update(gameTime);
+            }
+        }
+        public override void Draw(Microsoft.Xna.Framework.GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            base.Draw(gameTime, spriteBatch);
+            if (level != null)
+            {
+                level.Draw(gameTime, spriteBatch);
+            }
+        }
+
+        public void LoadLevel(int levelIndex)
+        {
+            string levelFileName = "Content/Levels/level" + levelIndex + ".txt";
+            level = new Level(levelIndex, levelFileName);
+            hintButton.IsVisible = PenguinPairs.HintsEnabled;
         }
         #endregion
         #region Private Methods

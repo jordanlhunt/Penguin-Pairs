@@ -50,20 +50,21 @@ namespace Project1.LevelObjects
             int hintX = int.Parse(hint[0]);
             int hintY = int.Parse(hint[1]);
             int hintDirection = StringToDirection(hint[2]);
-            hintArrow = new SpriteGameObject("spr_arrow_hint@4", hintDirection);
+            hintArrow = new SpriteGameObject("Sprites/LevelObjects/spr_arrow_hint@4", hintDirection);
             hintArrow.LocalPosition = GetCellPosition(hintX, hintY);
             List<string> gridRows = new List<string>();
             string gridLine = streamReader.ReadLine();
             int gridWidth = gridLine.Length;
             while (gridLine != null)
             {
-                gridRows.Add(gridLine);
-                gridLine = streamReader.ReadLine();
                 if (gridLine.Length > gridWidth)
                 {
                     gridWidth = gridLine.Length;
                 }
+                gridRows.Add(gridLine);
+                gridLine = streamReader.ReadLine();
             }
+
             streamReader.Close();
             AddPlayingField(gridRows, gridWidth, gridRows.Count);
         }

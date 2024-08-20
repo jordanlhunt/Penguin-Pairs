@@ -22,7 +22,7 @@ namespace Project1.GameStates
             backButton.LocalPosition = new Vector2(415, 720);
             gameObjectsList.AddChild(backButton);
             // Add the level buttons
-            int numberOfLevels = 12;
+            int numberOfLevels = PenguinPairs.NumberOfLevels;
             levelButtons = new LevelButton[numberOfLevels];
             // Place the level buttons in a grid
             Vector2 gridOffset = new Vector2(155, 230);
@@ -31,7 +31,7 @@ namespace Project1.GameStates
             const int SpaceBetweenRows = 5;
             for (int i = 0; i < numberOfLevels; i++)
             {
-                LevelButton levelButton = new LevelButton(i + 1, LevelStatus.Solved);
+                LevelButton levelButton = new LevelButton(i + 1, PenguinPairs.GetLevelStatus(i + 1));
                 int buttonRow = i / ButtonsPerRow;
                 int buttonColumn = i % ButtonsPerRow;
                 levelButton.LocalPosition = gridOffset + new Vector2(buttonColumn * (levelButton.Width + SpaceBetweenColumns), buttonRow * (levelButton.Height + SpaceBetweenRows));
@@ -55,7 +55,8 @@ namespace Project1.GameStates
                 {
                     // Go to the playing state
                     ExtendedGame.GameStateManager.SwitchGameState(PenguinPairs.STATENAME_PLAYING);
-                    // TODO: Load the level
+                    PlayingState playingState = (PlayingState)ExtendedGame.GameStateManager.GetGameState(PenguinPairs.STATENAME_PLAYING);
+                    playingState.LoadLevel(levelButton.LevelIndex);
                     return;
                 }
             }
