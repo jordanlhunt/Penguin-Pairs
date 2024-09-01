@@ -2,7 +2,7 @@
 {
     internal class Shark : Animal
     {
-        public Shark() : base("Sprites/LevelObjects/spr_shark")
+        public Shark(Level level) : base(level, "Sprites/LevelObjects/spr_shark")
         {
         }
     }
