@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Project1.Engine;
+using Project1.GameStates;
 using System.Collections.Generic;
 using System.IO;
 
@@ -17,6 +18,7 @@ namespace Project1.LevelObjects
         Tile[,] tiles;
         Animal[,] animalsOnTiles;
         SpriteGameObject hintArrow;
+        MoveableAnimalSelector moveableAnimalSelector;
         #endregion
         #region Properties
         public int LevelIndex
@@ -37,9 +39,13 @@ namespace Project1.LevelObjects
         {
             return new Vector2(x * TILE_WIDTH, y * TILE_HEIGHT);
         }
+        public void SelectAnimal(MoveableAnimal someAnimal)
+        {
+            moveableAnimalSelector.SelectedAnimal = someAnimal;
+        }
         #endregion
         #region Private Method
-        void LoadLevelFromFileName(string fileName)
+        private void LoadLevelFromFileName(string fileName)
         {
             StreamReader streamReader = new StreamReader(fileName);
             string levelTitle = streamReader.ReadLine();
@@ -68,7 +74,7 @@ namespace Project1.LevelObjects
             streamReader.Close();
             AddPlayingField(gridRows, gridWidth, gridRows.Count);
         }
-        void CreateLevelInfoObject(string levelTitle, string levelDescription)
+        private void CreateLevelInfoObject(string levelTitle, string levelDescription)
         {
             SpriteGameObject levelInfoBackground = new SpriteGameObject("Sprites/spr_level_info");
             levelInfoBackground.SetOriginToCenter();
@@ -83,7 +89,7 @@ namespace Project1.LevelObjects
             AddChild(textGameObjectDescription);
             AddChild(textGameObjectInfo);
         }
-        int StringToDirection(string direction)
+        private int StringToDirection(string direction)
         {
             if (direction == "right")
             {
@@ -108,13 +114,14 @@ namespace Project1.LevelObjects
         /// <param name="gridRows"></param>
         /// <param name="gridWidth"></param>
         /// <param name="gridHeight"></param>
-        void AddPlayingField(List<string> gridRows, int gridWidth, int gridHeight)
+        private void AddPlayingField(List<string> gridRows, int gridWidth, int gridHeight)
         {
             GameObjectList playingFieldList = new GameObjectList();
             Vector2 gridSize = new Vector2(gridWidth * TILE_WIDTH, gridHeight * TILE_HEIGHT);
             playingFieldList.LocalPosition = new Vector2(600, 420) - gridSize / 2.0f;
             tiles = new Tile[gridWidth, gridHeight];
             animalsOnTiles = new Animal[gridWidth, gridHeight];
+
             for (int y = 0; y < gridHeight; y++)
             {
                 string row = gridRows[y];
@@ -149,6 +156,8 @@ namespace Project1.LevelObjects
             }
             hintArrow.IsVisible = false;
             playingFieldList.AddChild(hintArrow);
+            moveableAnimalSelector = new MoveableAnimalSelector();
+            playingFieldList.AddChild(moveableAnimalSelector);
             AddChild(playingFieldList);
         }
 

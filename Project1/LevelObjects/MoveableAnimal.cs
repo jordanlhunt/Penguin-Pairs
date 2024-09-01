@@ -1,4 +1,6 @@
-﻿using Project1.Engine;
+﻿using Microsoft.Xna.Framework;
+using Project1.Engine;
+using System;
 
 namespace Project1.LevelObjects
 {
@@ -37,6 +39,18 @@ namespace Project1.LevelObjects
 
         }
         #endregion
+        #region Public Methods
+
+
+        public void TryMoveInDirection(Point movementDirection)
+        {
+        }
+
+        public bool CanMoveInDirection(Point movementDirection)
+        {
+            throw new NotImplementedException();
+        }
+
         #region Private Methods
         static string GetSpriteName(bool isInHole)
         {

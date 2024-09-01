@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Project1.Engine;
 using Project1.LevelObjects;
-using System;
 using Point = Microsoft.Xna.Framework.Point;
 
 
@@ -12,10 +11,10 @@ namespace Project1.GameStates
         #region Member Variables
         Arrow[] arrowsArray;
         Point[] directionArray;
-        MoveableAnimalSelector selectedAnimal;
+        MoveableAnimal selectedAnimal;
         #endregion
         #region Properties
-        public MoveableAnimalSelector SelectedAnimal
+        public MoveableAnimal SelectedAnimal
         {
             get
             {
@@ -75,7 +74,10 @@ namespace Project1.GameStates
             if (SelectedAnimal != null)
             {
                 LocalPosition = selectedAnimal.LocalPosition;
-                arrowsArray[i].IsVisible = SelectedAnimal.CanMoveInDirection(directionArray[i]);
+                for (int i = 0; i < 4; i++)
+                {
+                    arrowsArray[i].IsVisible = SelectedAnimal.CanMoveInDirection(directionArray[i]);
+                }
             }
         }
 
@@ -83,15 +85,6 @@ namespace Project1.GameStates
         #endregion
 
         #region Private Methods
-
-        private void TryMoveInDirection(Point movementDirection)
-        {
-        }
-
-        private bool CanMoveInDirection(Point movementDirection)
-        {
-            throw new NotImplementedException();
-        }
         #endregion
     }
 }
