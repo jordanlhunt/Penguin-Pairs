@@ -66,6 +66,11 @@ namespace Project1.Engine
         /// <param name="spriteBatch">A sprite batch object used for drawing sprites</param>
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            if (IsVisible == false)
+            {
+                return;
+            }
+
             foreach (GameObject child in children)
             {
                 child.Draw(gameTime, spriteBatch);
