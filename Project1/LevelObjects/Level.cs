@@ -8,9 +8,9 @@ namespace Project1.LevelObjects
     internal class Level : GameObjectList
     {
         #region Constants
-        const int TileWidth = 73;
-        const int TileHeight = 72;
-        const string MoveableAnimalLetters = "brgycpmx";
+        const int TILE_WIDTH = 73;
+        const int TILE_HEIGHT = 72;
+        const string MOVEABLE_ANIMAL_LETTERS = "brgycpmx";
         #endregion
         #region Member Variables
         int targetNumberOfPairs;
@@ -35,7 +35,7 @@ namespace Project1.LevelObjects
         #region Public Method
         public Vector2 GetCellPosition(int x, int y)
         {
-            return new Vector2(x * TileWidth, y * TileHeight);
+            return new Vector2(x * TILE_WIDTH, y * TILE_HEIGHT);
         }
         #endregion
         #region Private Method
@@ -111,7 +111,7 @@ namespace Project1.LevelObjects
         void AddPlayingField(List<string> gridRows, int gridWidth, int gridHeight)
         {
             GameObjectList playingFieldList = new GameObjectList();
-            Vector2 gridSize = new Vector2(gridWidth * TileWidth, gridHeight * TileHeight);
+            Vector2 gridSize = new Vector2(gridWidth * TILE_WIDTH, gridHeight * TILE_HEIGHT);
             playingFieldList.LocalPosition = new Vector2(600, 420) - gridSize / 2.0f;
             tiles = new Tile[gridWidth, gridHeight];
             animalsOnTiles = new Animal[gridWidth, gridHeight];
@@ -162,7 +162,7 @@ namespace Project1.LevelObjects
             }
             if (newAnimal == null)
             {
-                int animalIndex = MoveableAnimalLetters.IndexOf(symbol);
+                int animalIndex = MOVEABLE_ANIMAL_LETTERS.IndexOf(symbol);
                 if (animalIndex >= 0)
                 {
                     newAnimal = new MoveableAnimal(animalIndex, false);
@@ -170,7 +170,7 @@ namespace Project1.LevelObjects
             }
             if (newAnimal == null)
             {
-                int animalIndex = MoveableAnimalLetters.ToUpper().IndexOf(symbol);
+                int animalIndex = MOVEABLE_ANIMAL_LETTERS.ToUpper().IndexOf(symbol);
                 if (animalIndex >= 0)
                 {
                     newAnimal = new MoveableAnimal(animalIndex, true);
@@ -208,7 +208,7 @@ namespace Project1.LevelObjects
             {
                 return Tile.Type.Hole;
             }
-            else if (MoveableAnimalLetters.ToUpper().Contains(symbol))
+            else if (MOVEABLE_ANIMAL_LETTERS.ToUpper().Contains(symbol))
             {
                 return Tile.Type.Hole;
             }
