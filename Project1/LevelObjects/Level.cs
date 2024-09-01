@@ -167,14 +167,14 @@ namespace Project1.LevelObjects
             // TODO: check if symbol represents an animal
             if (symbol == '@')
             {
-                newAnimal = new Shark();
+                newAnimal = new Shark(this);
             }
             if (newAnimal == null)
             {
                 int animalIndex = MOVEABLE_ANIMAL_LETTERS.IndexOf(symbol);
                 if (animalIndex >= 0)
                 {
-                    newAnimal = new MoveableAnimal(animalIndex, false);
+                    newAnimal = new MoveableAnimal(this, animalIndex, false);
                 }
             }
             if (newAnimal == null)
@@ -182,7 +182,7 @@ namespace Project1.LevelObjects
                 int animalIndex = MOVEABLE_ANIMAL_LETTERS.ToUpper().IndexOf(symbol);
                 if (animalIndex >= 0)
                 {
-                    newAnimal = new MoveableAnimal(animalIndex, true);
+                    newAnimal = new MoveableAnimal(this, animalIndex, true);
                 }
             }
 

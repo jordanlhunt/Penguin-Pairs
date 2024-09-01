@@ -43,9 +43,9 @@ namespace Project1.Engine
         /// <param name="inputHelper">An object required for handling player input</param>
         public override void HandleInput(InputHelper inputHelper)
         {
-            foreach (GameObject child in children)
+            for (int i = children.Count - 1; i >= 0; i--)
             {
-                child.HandleInput(inputHelper);
+                children[i].HandleInput(inputHelper);
             }
         }
         /// <summary>

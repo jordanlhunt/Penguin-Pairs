@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Project1.Engine;
-using System;
 
 namespace Project1.LevelObjects
 {
@@ -8,8 +7,6 @@ namespace Project1.LevelObjects
     {
         #region Member Variables
         bool isInHole;
-        int animalIndex;
-        int sheetIndex;
         #endregion
         #region Properties
         public int AnimalIndex
@@ -48,8 +45,17 @@ namespace Project1.LevelObjects
 
         public bool CanMoveInDirection(Point movementDirection)
         {
-            throw new NotImplementedException();
+            return true;
         }
+
+        public override void HandleInput(InputHelper inputHelper)
+        {
+            if (IsVisible && BoundingBox.Contains(inputHelper.MousePositionWorld) && inputHelper.IsMouseLeftButtonPressed())
+            {
+                level.SelectAnimal(this);
+            }
+        }
+        #endregion
 
         #region Private Methods
         static string GetSpriteName(bool isInHole)
