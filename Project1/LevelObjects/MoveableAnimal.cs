@@ -5,8 +5,12 @@ namespace Project1.LevelObjects
 {
     internal class MoveableAnimal : Animal
     {
+        #region Constants
+        const float SPEED = 300.0f;
+        #endregion
         #region Member Variables
         bool isInHole;
+        Vector2 targetWorldPosition;
         #endregion
         #region Properties
         public int AnimalIndex
@@ -16,7 +20,7 @@ namespace Project1.LevelObjects
                 return SheetIndex;
             }
         }
-        bool IsIneHole
+        bool IsInHole
         {
             get
             {
@@ -28,11 +32,18 @@ namespace Project1.LevelObjects
                 sprite = new SpriteSheet(GetSpriteName(isInHole), AnimalIndex);
             }
         }
+        bool IsMoving
+        {
+            get
+            {
+                return LocalPosition != targetWorldPosition;
+            }
+        }
         #endregion
         #region Constructor
         public MoveableAnimal(Level level, Point gridPosition, int animalIndex, bool isInHole) : base(level, gridPosition, GetSpriteName(isInHole), animalIndex)
         {
-
+            this.targetWorldPosition = LocalPosition;
 
         }
         #endregion
