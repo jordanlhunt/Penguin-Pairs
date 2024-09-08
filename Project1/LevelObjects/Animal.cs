@@ -10,6 +10,12 @@ namespace Project1.LevelObjects
         {
             this.level = level;
             this.currentGridPosition = gridPosition;
+            ApplyCurrentPosition();
+        }
+        protected virtual void ApplyCurrentPosition()
+        {
+            level.AddAnimalToGrid(this, currentGridPosition);
+            LocalPosition = level.GetCellPosition(currentGridPosition.X, currentGridPosition.Y);
         }
     }
 }

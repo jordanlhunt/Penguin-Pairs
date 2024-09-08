@@ -175,7 +175,7 @@ namespace Project1.LevelObjects
             // TODO: check if symbol represents an animal
             if (symbol == '@')
             {
-                newAnimal = new Shark(this);
+                newAnimal = new Shark(this, new Point(x, y));
             }
             if (newAnimal == null)
             {
@@ -192,12 +192,6 @@ namespace Project1.LevelObjects
                 {
                     newAnimal = new MoveableAnimal(this, new Point(x, y), animalIndex, true);
                 }
-            }
-
-            if (newAnimal != null)
-            {
-                newAnimal.LocalPosition = GetCellPosition(x, y);
-                animalsOnTiles[x, y] = newAnimal;
             }
         }
 
