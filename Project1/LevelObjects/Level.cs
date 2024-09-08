@@ -43,6 +43,14 @@ namespace Project1.LevelObjects
         {
             moveableAnimalSelector.SelectedAnimal = someAnimal;
         }
+        public void AddAnimalToGrid(Animal animal, Point gridPosition)
+        {
+            animalsOnTiles[gridPosition.X, gridPosition.Y] = animal;
+        }
+        public void RemoveAnimalFromGrid(Point gridPosition)
+        {
+            animalsOnTiles[gridPosition.X, gridPosition.Y] = null;
+        }
         #endregion
         #region Private Method
         private void LoadLevelFromFileName(string fileName)
@@ -174,7 +182,7 @@ namespace Project1.LevelObjects
                 int animalIndex = MOVEABLE_ANIMAL_LETTERS.IndexOf(symbol);
                 if (animalIndex >= 0)
                 {
-                    newAnimal = new MoveableAnimal(this, animalIndex, false);
+                    newAnimal = new MoveableAnimal(this, new Point(x, y), animalIndex, false);
                 }
             }
             if (newAnimal == null)
@@ -182,7 +190,7 @@ namespace Project1.LevelObjects
                 int animalIndex = MOVEABLE_ANIMAL_LETTERS.ToUpper().IndexOf(symbol);
                 if (animalIndex >= 0)
                 {
-                    newAnimal = new MoveableAnimal(this, animalIndex, true);
+                    newAnimal = new MoveableAnimal(this, new Point(x, y), animalIndex, true);
                 }
             }
 

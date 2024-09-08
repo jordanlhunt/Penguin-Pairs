@@ -1,12 +1,15 @@
 ﻿using Project1.Engine;
+using Point = Microsoft.Xna.Framework.Point;
 namespace Project1.LevelObjects
 {
     internal abstract class Animal : SpriteGameObject
     {
         protected Level level;
-        protected Animal(Level level, string spriteName, int sheetIndex = 0) : base(spriteName, sheetIndex)
+        protected Point currentGridPosition;
+        protected Animal(Level level, Point gridPosition, string spriteName, int sheetIndex = 0) : base(spriteName, sheetIndex)
         {
             this.level = level;
+            this.currentGridPosition = gridPosition;
         }
     }
 }
