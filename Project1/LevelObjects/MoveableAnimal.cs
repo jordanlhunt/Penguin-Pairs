@@ -49,9 +49,30 @@ namespace Project1.LevelObjects
         #endregion
         #region Public Methods
 
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            if (IsMoving && Vector2.Distance(LocalPosition, targetWorldPosition) < SPEED * gameTime.ElapsedGameTime.TotalSeconds)
+            {
+                ApplyCurrentPosition();
+            }
+        }
 
         public void TryMoveInDirection(Point movementDirection)
         {
+            if (!CanMoveInDirection(movementDirection))
+            {
+                return;
+            }
+            level.RemoveAnimalFromGrid(currentGridPosition);
+            while (CanMoveInDirection(movementDirection))
+            {
+                currentGridPosition += movementDirection;
+            }
+            targetWorldPosition = level.GetCellPosition(currentGridPosition.X, currentGridPosition.Y);
+            Vector2 direction = targetWorldPosition - LocalPosition;
+            direction.Normalize();
+            velocity = direction * SPEED;
         }
 
         public bool CanMoveInDirection(Point movementDirection)
