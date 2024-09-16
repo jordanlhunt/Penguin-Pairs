@@ -26,6 +26,20 @@ namespace Project1.LevelObjects
             get;
             private set;
         }
+        int GridWidth
+        {
+            get
+            {
+                return tiles.GetLength(0);
+            }
+        }
+        int GridHeight
+        {
+            get
+            {
+                return tiles.GetLength(1);
+            }
+        }
         #endregion
         #region Constructor
         public Level(int levelIndex, string fileName)
@@ -50,6 +64,19 @@ namespace Project1.LevelObjects
         public void RemoveAnimalFromGrid(Point gridPosition)
         {
             animalsOnTiles[gridPosition.X, gridPosition.Y] = null;
+        }
+        public Tile.Type GetTileType(Point gridPosition)
+        {
+            Tile.Type tileTypeToReturn;
+            if (!IsPositionInGrid(gridPosition))
+            {
+                tileTypeToReturn = Tile.Type.Empty;
+            }
+            else
+            {
+                tileTypeToReturn = tiles[gridPosition.X, gridPosition.Y].TileType;
+            }
+            return tileTypeToReturn;
         }
         #endregion
         #region Private Method
@@ -224,6 +251,11 @@ namespace Project1.LevelObjects
                 return Tile.Type.Hole;
             }
             return Tile.Type.Normal;
+        }
+
+        private bool IsPositionInGrid(Point gridPosition)
+        {
+            return (gridPosition.X >= 0 && gridPosition.X < GridWidth && gridPosition.Y >= 0 && gridPosition.Y < GridHeight);
         }
         #endregion
     }
