@@ -75,9 +75,47 @@ namespace Project1.LevelObjects
             velocity = direction * SPEED;
         }
 
+        /// <summary>
+        /// Checks and returns whether this MovableAnimal can move (at least one grid cell) in the given direction. 
+        /// Moving in this direction might cause the MovableAnimal to die, but that doesn't matter here.
+        /// </summary>
+        /// <param name="direction">A direction to move in.</param>
+        /// <returns>true if the animal can move in the given direction; false otherwise.</returns>
         public bool CanMoveInDirection(Point movementDirection)
         {
-            return true;
+            bool canMoveInDirection = true;
+            if (!IsVisible || IsInHole || IsMoving)
+            {
+                canMoveInDirection = false;
+            }
+            // Get information about the current tile
+            Tile.Type currentTileType = level.GetTileType(currentGridPosition);
+            Animal otherAnimal = level.GetAnimal(currentGridPosition);
+            // If current tile has "empty" or hole type, the animal should stop moving
+            if (currentTileType == Tile.Type.Empty || currentTileType == Tile.Type.Hole)
+            {
+                canMoveInDirection = false;
+            }
+            // If another animal is at the current tile there should be some interaction not a movement
+            if (otherAnimal != null && otherAnimal != this)
+            {
+                return false;
+            }
+            // Check the next tile
+            Point nextTilePosition = currentGridPosition + movementDirection;
+            Tile.Type nextTileType = level.GetTileType(nextTilePosition);
+            Animal nextAnimal = level.GetAnimal(nextTilePosition);
+            // If next tile is a wall, don't allow movement
+            if (nextTileType == Tile.Type.Wall)
+            {
+                canMoveInDirection = false;
+            }
+            // If the next tile contains a movable animal that doesn't match, we can't go there
+            if (nextAnimal is MoveableAnimal && !IsPairWith((MoveableAnimal)nextAnimal))
+            {
+                return false;
+            }
+            return canMoveInDirection;
         }
 
         public override void HandleInput(InputHelper inputHelper)

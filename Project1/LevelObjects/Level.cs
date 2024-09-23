@@ -78,6 +78,16 @@ namespace Project1.LevelObjects
             }
             return tileTypeToReturn;
         }
+        public Animal GetAnimal(Point gridPosition)
+        {
+            Animal animalToReturn;
+            if (!IsPositionInGrid(gridPosition))
+            {
+                animalToReturn = null;
+            }
+            animalToReturn = animalsOnTiles[gridPosition.X, gridPosition.Y];
+            return animalToReturn;
+        }
         #endregion
         #region Private Method
         private void LoadLevelFromFileName(string fileName)
