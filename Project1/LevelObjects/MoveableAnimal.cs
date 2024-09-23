@@ -39,6 +39,20 @@ namespace Project1.LevelObjects
                 return LocalPosition != targetWorldPosition;
             }
         }
+        bool IsSeal
+        {
+            get
+            {
+                return AnimalIndex == 7;
+            }
+        }
+        bool IsMultiColoredPenguin
+        {
+            get
+            {
+                return AnimalIndex == 6;
+            }
+        }
         #endregion
         #region Constructor
         public MoveableAnimal(Level level, Point gridPosition, int animalIndex, bool isInHole) : base(level, gridPosition, GetSpriteName(isInHole), animalIndex)
@@ -118,6 +132,7 @@ namespace Project1.LevelObjects
             return canMoveInDirection;
         }
 
+
         public override void HandleInput(InputHelper inputHelper)
         {
             if (IsVisible && BoundingBox.Contains(inputHelper.MousePositionWorld) && inputHelper.IsMouseLeftButtonPressed())
@@ -138,6 +153,12 @@ namespace Project1.LevelObjects
             {
                 return "Sprites/LevelObjects/spr_penguin@8";
             }
+        }
+
+        bool IsPairWith(MoveableAnimal otherAnimal)
+        {
+            bool isPathWith = false;
+            return isPathWith;
         }
         #endregion
     }
