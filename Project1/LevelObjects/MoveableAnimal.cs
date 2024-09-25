@@ -157,8 +157,22 @@ namespace Project1.LevelObjects
 
         bool IsPairWith(MoveableAnimal otherAnimal)
         {
-            bool isPathWith = false;
-            return isPathWith;
+            bool isPairWith = true;
+            // if either of them are seals return false
+            if (this.IsSeal || otherAnimal.IsSeal)
+            {
+                isPairWith = false;
+            }
+            // If either of them is a multicolored penguin then return true
+            if (!(this.IsMultiColoredPenguin) && !(otherAnimal.IsMultiColoredPenguin))
+            {
+                isPairWith = false;
+            }
+            else
+            {
+                isPairWith = (this.AnimalIndex == otherAnimal.AnimalIndex);
+            }
+            return isPairWith;
         }
         #endregion
     }
