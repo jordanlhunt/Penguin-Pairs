@@ -129,6 +129,8 @@ namespace Project1.LevelObjects
             {
                 return false;
             }
+
+
             return canMoveInDirection;
         }
 
