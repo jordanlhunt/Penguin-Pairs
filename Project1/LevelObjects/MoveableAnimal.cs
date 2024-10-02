@@ -74,19 +74,21 @@ namespace Project1.LevelObjects
 
         public void TryMoveInDirection(Point movementDirection)
         {
-            if (!CanMoveInDirection(movementDirection))
-            {
-                return;
-            }
-            level.RemoveAnimalFromGrid(currentGridPosition);
+            // Move the animal as long it can move in a direciton
+            Point positionBeforeMoving = currentGridPosition;
             while (CanMoveInDirection(movementDirection))
             {
                 currentGridPosition += movementDirection;
             }
-            targetWorldPosition = level.GetCellPosition(currentGridPosition.X, currentGridPosition.Y);
-            Vector2 direction = targetWorldPosition - LocalPosition;
-            direction.Normalize();
-            velocity = direction * SPEED;
+            if (currentGridPosition != positionBeforeMoving)
+            {
+                targetWorldPosition = level.GetCellPosition(currentGridPosition.X, currentGridPosition.Y);
+                Vector2 direction = targetWorldPosition - LocalPosition;
+                direction.Normalize();
+                velocity = direction * SPEED;
+                level.RemoveAnimalFromGrid(positionBeforeMoving);
+            }
+
         }
 
         /// <summary>
@@ -113,7 +115,7 @@ namespace Project1.LevelObjects
             // If another animal is at the current tile there should be some interaction not a movement
             if (otherAnimal != null && otherAnimal != this)
             {
-                return false;
+                canMoveInDirection = false;
             }
             // Check the next tile
             Point nextTilePosition = currentGridPosition + movementDirection;
@@ -127,7 +129,7 @@ namespace Project1.LevelObjects
             // If the next tile contains a movable animal that doesn't match, we can't go there
             if (nextAnimal is MoveableAnimal && !IsPairWith((MoveableAnimal)nextAnimal))
             {
-                return false;
+                canMoveInDirection = false;
             }
 
 
@@ -142,6 +144,32 @@ namespace Project1.LevelObjects
                 level.SelectAnimal(this);
             }
         }
+
+        protected override void ApplyCurrentPosition()
+        {
+            // Set the animal's local position to the world position
+            LocalPosition = level.GetCellPosition(currentGridPosition.X, currentGridPosition.Y);
+            velocity = Vector2.Zero;
+            Tile.Type currentTileType = level.GetTileType(currentGridPosition);
+            if (currentTileType == Tile.Type.Empty)
+            {
+                IsVisible = false;
+            }
+            Animal otherAnimal = level.GetAnimal(currentGridPosition);
+            if (otherAnimal != null)
+            {
+                level.RemoveAnimalFromGrid(currentGridPosition);
+                IsVisible = false;
+                otherAnimal.IsVisible = false;
+            }
+            level.AddAnimalToGrid(this, currentGridPosition);
+            if (currentTileType == Tile.Type.Hole)
+            {
+                isInHole = true;
+            }
+        }
+
+
         #endregion
 
         #region Private Methods
@@ -157,6 +185,7 @@ namespace Project1.LevelObjects
             }
         }
 
+
         bool IsPairWith(MoveableAnimal otherAnimal)
         {
             bool isPairWith = true;
@@ -170,10 +199,7 @@ namespace Project1.LevelObjects
             {
                 isPairWith = false;
             }
-            else
-            {
-                isPairWith = (this.AnimalIndex == otherAnimal.AnimalIndex);
-            }
+            isPairWith = (this.AnimalIndex == otherAnimal.AnimalIndex);
             return isPairWith;
         }
         #endregion
