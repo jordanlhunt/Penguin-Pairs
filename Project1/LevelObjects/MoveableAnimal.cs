@@ -55,7 +55,7 @@ namespace Project1.LevelObjects
         }
         #endregion
         #region Constructor
-        public MoveableAnimal(Level level, Point gridPosition, int animalIndex, bool isInHole) : base(level, gridPosition, GetSpriteName(isInHole), animalIndex)
+        public MoveableAnimal(Level level, Point gridPosition, int animalIndex, bool isInHole) : base(level, gridPosition, GetSpriteName(false), animalIndex)
         {
             this.targetWorldPosition = LocalPosition;
 

@@ -50,8 +50,10 @@ namespace Project1.LevelObjects
         #region Public Methods
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, spriteBatch);
-            tileImage.Draw(gameTime, spriteBatch);
+            if (tileImage != null)
+            {
+                tileImage.Draw(gameTime, spriteBatch);
+            }
         }
         #endregion
         #region Private Methods
