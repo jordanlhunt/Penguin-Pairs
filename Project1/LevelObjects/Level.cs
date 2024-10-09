@@ -219,7 +219,7 @@ namespace Project1.LevelObjects
                 int animalIndex = MOVEABLE_ANIMAL_LETTERS.IndexOf(symbol);
                 if (animalIndex >= 0)
                 {
-                    newAnimal = new MoveableAnimal(this, new Point(x, y), animalIndex, false);
+                    newAnimal = new MoveableAnimal(this, new Point(x, y), animalIndex);
                 }
             }
             if (newAnimal == null)
@@ -227,7 +227,7 @@ namespace Project1.LevelObjects
                 int animalIndex = MOVEABLE_ANIMAL_LETTERS.ToUpper().IndexOf(symbol);
                 if (animalIndex >= 0)
                 {
-                    newAnimal = new MoveableAnimal(this, new Point(x, y), animalIndex, true);
+                    newAnimal = new MoveableAnimal(this, new Point(x, y), animalIndex);
                 }
             }
         }

@@ -325,6 +325,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/SpriteObjects/spr_field@2.png
 
+#begin Sprites/SpriteObjects/spr_frame_goal.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/SpriteObjects/spr_frame_goal.jpg
+
 #begin Sprites/SpriteObjects/spr_hole.png
 /importer:TextureImporter
 /processor:TextureProcessor
