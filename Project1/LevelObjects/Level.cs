@@ -19,6 +19,7 @@ namespace Project1.LevelObjects
         Animal[,] animalsOnTiles;
         SpriteGameObject hintArrow;
         MoveableAnimalSelector moveableAnimalSelector;
+        PairList pairList;
         #endregion
         #region Properties
         public int LevelIndex
@@ -133,6 +134,9 @@ namespace Project1.LevelObjects
             AddChild(levelInfoBackground);
             AddChild(textGameObjectDescription);
             AddChild(textGameObjectInfo);
+            pairList = new PairList(targetNumberOfPairs);
+            pairList.LocalPosition = new Vector2(20, 20);
+            AddChild(pairList);
         }
         private int StringToDirection(string direction)
         {
