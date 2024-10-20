@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Project1.Engine;
-
 namespace Project1.LevelObjects
 {
     internal class MoveableAnimal : Animal
@@ -58,11 +57,9 @@ namespace Project1.LevelObjects
         public MoveableAnimal(Level level, Point gridPosition, int animalIndex) : base(level, gridPosition, GetSpriteName(false), animalIndex)
         {
             this.targetWorldPosition = LocalPosition;
-
         }
         #endregion
         #region Public Methods
-
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -71,7 +68,6 @@ namespace Project1.LevelObjects
                 ApplyCurrentPosition();
             }
         }
-
         public void TryMoveInDirection(Point movementDirection)
         {
             // Move the animal as long it can move in a direciton
@@ -88,9 +84,7 @@ namespace Project1.LevelObjects
                 velocity = direction * SPEED;
                 level.RemoveAnimalFromGrid(positionBeforeMoving);
             }
-
         }
-
         /// <summary>
         /// Checks and returns whether this MovableAnimal can move (at least one grid cell) in the given direction. 
         /// Moving in this direction might cause the MovableAnimal to die, but that doesn't matter here.
@@ -131,12 +125,8 @@ namespace Project1.LevelObjects
             {
                 canMoveInDirection = false;
             }
-
-
             return canMoveInDirection;
         }
-
-
         public override void HandleInput(InputHelper inputHelper)
         {
             if (IsVisible && BoundingBox.Contains(inputHelper.MousePositionWorld) && inputHelper.IsMouseLeftButtonPressed())
@@ -144,7 +134,6 @@ namespace Project1.LevelObjects
                 level.SelectAnimal(this);
             }
         }
-
         protected override void ApplyCurrentPosition()
         {
             // Set the animal's local position to the world position
@@ -161,6 +150,10 @@ namespace Project1.LevelObjects
                 level.RemoveAnimalFromGrid(currentGridPosition);
                 IsVisible = false;
                 otherAnimal.IsVisible = false;
+                if (otherAnimal is MoveableAnimal)
+                {
+                    level.PairFound(this, (MoveableAnimal)otherAnimal);
+                }
             }
             level.AddAnimalToGrid(this, currentGridPosition);
             if (currentTileType == Tile.Type.Hole)
@@ -168,10 +161,7 @@ namespace Project1.LevelObjects
                 isInHole = true;
             }
         }
-
-
         #endregion
-
         #region Private Methods
         static string GetSpriteName(bool isInHole)
         {
@@ -184,8 +174,6 @@ namespace Project1.LevelObjects
                 return "Sprites/LevelObjects/spr_penguin@8";
             }
         }
-
-
         bool IsPairWith(MoveableAnimal otherAnimal)
         {
             bool isPairWith = true;

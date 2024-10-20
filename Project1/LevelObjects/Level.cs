@@ -89,6 +89,12 @@ namespace Project1.LevelObjects
             animalToReturn = animalsOnTiles[gridPosition.X, gridPosition.Y];
             return animalToReturn;
         }
+        public void PairFound(MoveableAnimal penguin1, MoveableAnimal penguin2)
+        {
+            // Calculate the sprite sheet index of the pair that needs to be added
+            int penguinType = MathHelper.Max(penguin1.AnimalIndex, penguin2.AnimalIndex);
+            pairList.AddPair(penguinType);
+        }
         #endregion
         #region Private Method
         private void LoadLevelFromFileName(string fileName)
@@ -97,7 +103,7 @@ namespace Project1.LevelObjects
             string levelTitle = streamReader.ReadLine();
             string levelDescription = streamReader.ReadLine();
             targetNumberOfPairs = int.Parse(streamReader.ReadLine());
-            CreateLevelInfoObject(levelTitle, levelDescription);
+            CreateLevelInfoObjects(levelTitle, levelDescription);
             string[] hint = streamReader.ReadLine().Split(' ');
             int hintX = int.Parse(hint[0]);
             int hintY = int.Parse(hint[1]);
@@ -120,7 +126,7 @@ namespace Project1.LevelObjects
             streamReader.Close();
             AddPlayingField(gridRows, gridWidth, gridRows.Count);
         }
-        private void CreateLevelInfoObject(string levelTitle, string levelDescription)
+        private void CreateLevelInfoObjects(string levelTitle, string levelDescription)
         {
             SpriteGameObject levelInfoBackground = new SpriteGameObject("Sprites/spr_level_info");
             levelInfoBackground.SetOriginToCenter();

@@ -13,30 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../../../../../../../Documents/E-Books/csharpgames-master/Code and Assets/19_LoadingLevels/PenguinPairs3a/Content/Sprites/LevelObjects/spr_arrow_hint@4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../../../../../../../Documents/E-Books/csharpgames-master/Code and Assets/19_LoadingLevels/PenguinPairs3a/Content/Sprites/LevelObjects/spr_arrow_hint@4.png;Sprites/LevelObjects/spr_arrow_hint@4.png
-
-#begin ../../../../../../../../Documents/E-Books/csharpgames-master/Code and Assets/19_LoadingLevels/PenguinPairs3b/Content/Sprites/LevelObjects/spr_penguin_pairs@8.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../../../../../../../Documents/E-Books/csharpgames-master/Code and Assets/19_LoadingLevels/PenguinPairs3b/Content/Sprites/LevelObjects/spr_penguin_pairs@8.png;Sprites/LevelObjects/spr_penguin_pairs@8.png
-
 #begin Fonts/File.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -96,6 +72,18 @@
 
 #begin Levels/levels_status.txt
 /copy:Levels/levels_status.txt
+
+#begin Sprites/LevelObjects/spr_arrow_hint@4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/LevelObjects/spr_arrow_hint@4.png
 
 #begin Sprites/LevelObjects/spr_arrow1@4.png
 /importer:TextureImporter
@@ -253,6 +241,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/spr_background_options.jpg
 
+#begin Sprites/spr_frame_goal.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/spr_frame_goal.jpg
+
 #begin Sprites/spr_level_info.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -264,6 +264,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/spr_level_info.jpg
+
+#begin Sprites/spr_penguin_pairs@8.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/spr_penguin_pairs@8.png
 
 #begin Sprites/spr_titlescreen.jpg
 /importer:TextureImporter
