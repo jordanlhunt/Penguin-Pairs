@@ -44,7 +44,7 @@ namespace Project1.GameStates
             }
             if (hintButton.IsPressed)
             {
-                // TODO: Add Logic for Hint
+                level.ShowHint();
             }
             if (quitButton.IsPressed)
             {
@@ -62,6 +62,8 @@ namespace Project1.GameStates
             {
                 level.Update(gameTime);
             }
+            hintButton.IsVisible = PenguinPairs.HintsEnabled && !level.HasFirstMoveBeenMade;
+            retryButton.IsVisible = level.HasFirstMoveBeenMade;
         }
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime, SpriteBatch spriteBatch)
         {

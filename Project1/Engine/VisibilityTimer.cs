@@ -3,7 +3,7 @@
 namespace Project1.Engine
 {
     /// <summary>
-    /// An object taht can make another object visible for a certain amount of time
+    /// An object that can make another object visible for a certain amount of time
     /// </summary>
     internal class VisibilityTimer : GameObject
     {

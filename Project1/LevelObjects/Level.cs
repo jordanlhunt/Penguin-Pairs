@@ -20,6 +20,7 @@ namespace Project1.LevelObjects
         SpriteGameObject hintArrow;
         MoveableAnimalSelector moveableAnimalSelector;
         PairList pairList;
+        VisibilityTimer hintTimer;
         #endregion
         #region Properties
         public int LevelIndex
@@ -41,12 +42,20 @@ namespace Project1.LevelObjects
                 return tiles.GetLength(1);
             }
         }
+        public bool HasFirstMoveBeenMade
+        {
+
+            get;
+            private set;
+        }
         #endregion
         #region Constructor
         public Level(int levelIndex, string fileName)
         {
             this.LevelIndex = levelIndex;
             LoadLevelFromFileName(fileName);
+            // Private Set can only be set in the class constructor
+            HasFirstMoveBeenMade = false;
         }
         #endregion
         #region Public Method
@@ -65,6 +74,10 @@ namespace Project1.LevelObjects
         public void RemoveAnimalFromGrid(Point gridPosition)
         {
             animalsOnTiles[gridPosition.X, gridPosition.Y] = null;
+            if (HasFirstMoveBeenMade == false)
+            {
+                HasFirstMoveBeenMade = true;
+            }
         }
         public Tile.Type GetTileType(Point gridPosition)
         {
@@ -94,6 +107,10 @@ namespace Project1.LevelObjects
             // Calculate the sprite sheet index of the pair that needs to be added
             int penguinType = MathHelper.Max(penguin1.AnimalIndex, penguin2.AnimalIndex);
             pairList.AddPair(penguinType);
+        }
+        public void ShowHint()
+        {
+            hintTimer.StartVisible(2);
         }
         #endregion
         #region Private Method
@@ -211,6 +228,7 @@ namespace Project1.LevelObjects
             }
             hintArrow.IsVisible = false;
             playingFieldList.AddChild(hintArrow);
+            hintTimer = new VisibilityTimer(hintArrow);
             moveableAnimalSelector = new MoveableAnimalSelector();
             playingFieldList.AddChild(moveableAnimalSelector);
             AddChild(playingFieldList);
