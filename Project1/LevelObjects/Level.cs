@@ -112,6 +112,18 @@ namespace Project1.LevelObjects
         {
             hintTimer.StartVisible(2);
         }
+        public override void Reset()
+        {
+            for (int y = 0; y < GridHeight; y++)
+            {
+                for (int x = 0; x < GridWidth; x++)
+                {
+                    animalsOnTiles[x, y] = null;
+                }
+            }
+            HasFirstMoveBeenMade = false;
+            base.Reset();
+        }
         #endregion
         #region Private Method
         private void LoadLevelFromFileName(string fileName)
