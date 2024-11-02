@@ -46,6 +46,10 @@ namespace Project1.GameStates
             {
                 level.ShowHint();
             }
+            else if (retryButton.IsPressed)
+            {
+                level.Reset();
+            }
             if (quitButton.IsPressed)
             {
                 ExtendedGame.GameStateManager.SwitchGameState(PenguinPairs.STATENAME_LEVELSELECT);

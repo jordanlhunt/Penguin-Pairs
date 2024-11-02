@@ -10,6 +10,7 @@ namespace Project1.LevelObjects
         #region Member Variables
         bool isInHole;
         Vector2 targetWorldPosition;
+        Point startPosition;
         #endregion
         #region Properties
         public int AnimalIndex
@@ -57,6 +58,7 @@ namespace Project1.LevelObjects
         public MoveableAnimal(Level level, Point gridPosition, int animalIndex) : base(level, gridPosition, GetSpriteName(false), animalIndex)
         {
             this.targetWorldPosition = LocalPosition;
+            this.startPosition = gridPosition;
         }
         #endregion
         #region Public Methods
@@ -160,6 +162,13 @@ namespace Project1.LevelObjects
             {
                 isInHole = true;
             }
+        }
+        public override void Reset()
+        {
+            currentGridPosition = startPosition;
+            isInHole = false;
+            base.Reset();
+            targetWorldPosition = LocalPosition;
         }
         #endregion
         #region Private Methods
